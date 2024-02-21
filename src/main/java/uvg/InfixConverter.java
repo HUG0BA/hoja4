@@ -1,7 +1,9 @@
 package uvg;
 
+import java.util.*;
+
 public class InfixConverter {
-     public static int preferences(char a) {
+     public static int preference(char a) {
           if (a == '^') {
                return 2; // Mayor preferencia
           } else if (a == '*' || a == '/') {
@@ -13,17 +15,30 @@ public class InfixConverter {
      }
 
      public static String InfixToPostfix(String str) {
-
+          Stack<Character> stk = new Stack<>();
           String strAns = "";
-          int largo = str.length();
 
-          for (int i = 0; i < largo; i++) {
-               char a = str.charAt(i);
-
+          for (char a : str.toCharArray()) {
                if (a <= '0' || a >= '9') {
                     strAns += a;
+               } else if (a == '(') {
+                    a += stk.push('(');
+               } else if (a == ')') {
+                    while (!stk.isEmpty() || stk.peek() != '(') {
+                         strAns += stk.pop();
+                    }
+                    if (!stk.isEmpty()) {
+                         stk.pop();
+                    }
+               } else {
+                    while (!stk.isEmpty() || preference(stk.peek()) >= preference(a)) {
+                         strAns += stk.pop();
+                    }
+                    stk.push(a);
                }
-               
+          }
+          while (!stk.isEmpty()) {
+               strAns += stk.pop();
           }
 
           return strAns;
