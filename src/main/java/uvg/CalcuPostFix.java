@@ -96,7 +96,7 @@ public class CalcuPostFix {
           return numbers.isEmpty() ? 0 : numbers.pop();
           }
    
-     
+
      }
      
 
