@@ -2,7 +2,7 @@ package uvg;
 
 import java.util.*;
 
-public class InfixConverter {
+public class InfixConverter{
      public static int preference(char a) {
           if (a == '^') {
                return 2; // Mayor preferencia
@@ -16,31 +16,32 @@ public class InfixConverter {
 
      public static String InfixToPostfix(String str) {
           Stack<Character> stk = new Stack<>();
-          String strAns = "";
+          StringBuilder strAns = new StringBuilder();
+
 
           for (char a : str.toCharArray()) {
-               if (a <= '0' || a >= '9') {
-                    strAns += a;
+               if (Character.isDigit(a)) {
+                    strAns.append(a);
                } else if (a == '(') {
-                    a += stk.push('(');
+                    stk.push(a);
                } else if (a == ')') {
-                    while (!stk.isEmpty() || stk.peek() != '(') {
-                         strAns += stk.pop();
+                    while (!stk.isEmpty() && stk.peek() != '(') {
+                         strAns.append(stk.pop());
                     }
                     if (!stk.isEmpty()) {
                          stk.pop();
                     }
                } else {
-                    while (!stk.isEmpty() || preference(stk.peek()) >= preference(a)) {
-                         strAns += stk.pop();
+                    while (!stk.isEmpty() && preference(stk.peek()) >= preference(a)) {
+                         stk.pop();
                     }
                     stk.push(a);
                }
           }
           while (!stk.isEmpty()) {
-               strAns += stk.pop();
+               strAns.append(stk.pop());
           }
 
-          return strAns;
+          return strAns.toString();
      }
 }
