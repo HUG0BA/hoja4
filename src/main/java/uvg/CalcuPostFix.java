@@ -2,7 +2,7 @@ package uvg;
 
 public class CalcuPostFix {
      public int calcPostFix(String str) {
-          UVGStack<Integer> numbers = new ElMejorStack<Integer>();
+          UVGStack<Integer> numbers = new IntegerStackFactory()<Integer>();
           String[] array = str.split(" ");
 
           int a;
