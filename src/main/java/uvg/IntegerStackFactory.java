@@ -11,7 +11,7 @@ public class IntegerStackFactory {
                 return new ArrayListStack<Integer>();
 
             case "List":
-                return new LinkedListStack<>(listType);
+                return new LinkedListStack<Integer>(listType);
         
             default:
                 return null;

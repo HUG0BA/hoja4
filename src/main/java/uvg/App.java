@@ -9,11 +9,12 @@ import java.io.*;
 import java.util.Vector;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         Scanner teclado = new Scanner(System.in);
-        FileManager leer = new FileManager("src/main/FileNum.txt");
-        
+        FileManager leer = new FileManager();
+        CalcuPostFix calc = new CalcuPostFix();
+      
 
         System.out.println("Bienvenido a la calculadora de Infix a PostFix");
         System.out.println("Con que tipo de StackFactory quiere manipular su texto? ");
@@ -31,25 +32,29 @@ public class App {
                 if (factor == 1) {
                     System.out.println("Usando Double");
                     try {
-                        Vector<String> lineas = leer.readLines();
-                        for (String linea : lineas){
-                            //UVGStack<Integer> stk = UVGStack('List', stk);
+                        ArrayList<String> lineas = leer.readTXTFile("/FileNum.txt");
+                        for (int i = 0; i<lineas.size(); i++){
+                            String e = InfixConverter.InfixToPostfix(lineas.get(i));
+                            int a = calc.calcPostFix(e, "List", "Double");
+                            System.out.println(a);
                         }
                     } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
+                        System.out.println(e);
                     }
 
                 } else if (factor == 2) {
                     System.out.println("Usando Single");
                     try {
-                        Vector<String> lineas = leer.readLines();
-                        for (String linea : lineas){
-                            //UVGStack<Integer> stk = UVGStack('List', stk);
+                        ArrayList<String> lineas = leer.readTXTFile("/FileNum.txt");
+                        for (int i = 0; i<lineas.size(); i++){
+                            String e = InfixConverter.InfixToPostfix(lineas.get(i));
+                            int a = calc.calcPostFix(e, "List", "Single");
+                            System.out.println(a);
                         }
                     } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
+                        System.out.println(e);
                     }
 
                 }
@@ -58,13 +63,15 @@ public class App {
             case 2:
                 System.out.println("Usando Vector");
                 try {
-                    Vector<String> lineas = leer.readLines();
-                    for (String linea : lineas){
-                        //UVGStack<Integer> stk = UVGStack('Vector', stk);
+                    ArrayList<String> lineas = leer.readTXTFile("/FileNum.txt");
+                    for (int i = 0; i<lineas.size(); i++){
+                        String e = InfixConverter.InfixToPostfix(lineas.get(i));
+                        int a = calc.calcPostFix(e, "Vector", "");
+                        System.out.println(a);
                     }
                 } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
+                    System.out.println(e);
                 }
 
                 break;
@@ -72,13 +79,15 @@ public class App {
             case 3:
                 System.out.println("Usando ArrayList");
                 try {
-                    Vector<String> lineas = leer.readLines();
-                    for (String linea : lineas){
-                        //UVGStack<Integer> stk = UVGStack('Vector', stk);
+                    ArrayList<String> lineas = leer.readTXTFile("/FileNum.txt");
+                    for (int i = 0; i<lineas.size(); i++){
+                        String e = InfixConverter.InfixToPostfix(lineas.get(i));
+                        int a = calc.calcPostFix(e, "ArrayList", "");
+                        System.out.println(a);
                     }
                 } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
+                    System.out.println(e);
                 }
 
                 break;
