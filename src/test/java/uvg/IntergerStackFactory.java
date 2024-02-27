@@ -8,7 +8,7 @@ public class IntergerStackFactory {
     
     @Test
     public void VectorStackTest(){
-        UVGStack<Integer> vectorStack = IntegerStackFactory.create("Vector");
+        UVGStack<Integer> vectorStack = IntegerStackFactory.create("Vector", "");
 
         assertTrue(vectorStack instanceof VectorStack);
         assertFalse(vectorStack instanceof ArrayListStack);
@@ -17,7 +17,7 @@ public class IntergerStackFactory {
 
     @Test
     public void ArrayListStackTest(){
-        UVGStack<Integer> arraylistStack = IntegerStackFactory.create("ArrayList");
+        UVGStack<Integer> arraylistStack = IntegerStackFactory.create("ArrayList", "");
 
         assertFalse(arraylistStack instanceof VectorStack);
         assertTrue(arraylistStack instanceof ArrayListStack);

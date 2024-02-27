@@ -1,9 +1,20 @@
 package uvg;
 
 public class CalcuPostFix {
+     private static CalcuPostFix single_instance = null;
+
+     public String sss;
+
+     public static synchronized CalcuPostFix getInstance()
+     {
+          if (single_instance == null){
+               single_instance = new CalcuPostFix();
+          }return single_instance;
+     }
+
      public int calcPostFix(String str, String stackType, String listType) {
           UVGStack<Integer> numbers = IntegerStackFactory.create(stackType, listType);
-          String[] array = str.split(" ");
+          String[] array = str.split("");
           int a;
           int b;
 
