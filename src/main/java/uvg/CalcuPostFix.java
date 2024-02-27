@@ -1,10 +1,9 @@
 package uvg;
 
 public class CalcuPostFix {
-     public int calcPostFix(String str) {
-          UVGStack<Integer> numbers = new IntegerStackFactory()<Integer>();
+     public int calcPostFix(String str, String stackType, String listType) {
+          UVGStack<Integer> numbers = IntegerStackFactory.create(stackType, listType);
           String[] array = str.split(" ");
-
           int a;
           int b;
 
@@ -84,19 +83,16 @@ public class CalcuPostFix {
                          System.out.println("No se puede dividir por 0 en: " + b + "/" + a);
                     }
                     }
-
                     break;
-
                     default:
                     numbers.push(Integer.parseInt(element));
                }
-
           }
-
-          return numbers.isEmpty() ? 0 : numbers.pop();
-          }
-   
-
+          return numbers.isEmpty() ? 0 : numbers.pop(); 
      }
+}
+
+
+
      
 
